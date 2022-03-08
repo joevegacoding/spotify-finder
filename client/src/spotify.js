@@ -131,3 +131,36 @@ export const accessToken = getAccessToken();
 //  Gets current user's profile
 
 export const getCurrentUserProfile = () => axios.get('/me');
+
+
+//Get the list of user's playlists
+
+export const getCurrentUserPlaylists = (limit = 20) => {
+  return axios.get(`/me/playlists?limit=${limit}`);
+}
+
+//Get user's top artists
+
+export const getCurrentUserTopArtists = (time_range = 'short_term') => {
+
+  return axios.get(`/me/top/artists?time_range=${time_range}`)
+}
+
+//Get user's top tracks
+
+export const getCurrentUserTopTracks = (time_range = 'short_term') => {
+  return axios.get(`/me/top/tracks?time_range=${time_range}`);
+}
+
+//Get Playlist by ID
+
+export const getPlaylistById = playlist_id => {
+  return axios.get(`/playlists/${playlist_id}`)
+}
+
+
+//Retrieving all of the Audio Features for tracks
+
+export const getAudioFeaturesForTracks = ids => {
+  return axios.get(`/audio-features?ids=${ids}`)
+} 

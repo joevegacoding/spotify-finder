@@ -8,3 +8,12 @@ export const catchErrors = fn => {
        }) 
     }
 }
+
+// Function that formats milliseconnds to time duration in minutes and seconds. Could also be optimized for hours.
+
+export const formatDuration = milliSeconds => {
+    const minutes = Math.floor(milliSeconds / 60000);
+    const seconds = Math.floor((milliSeconds / 60000) / 1000);
+    return `${minutes}:${seconds < 10 ? '0': ''}${seconds}`;
+
+}

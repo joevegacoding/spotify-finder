@@ -11,8 +11,27 @@ import {
 import { useEffect, useState } from "react";
 import styled from 'styled-components/macro';
 import {GlobalStyle} from './styles'
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
+import {Login, Profile, TopArtistsPage, TopTracksPage, PlaylistsPage, PlaylistInfoPage} from './pages'
 
+
+
+
+const StyledLogoutButton = styled.button`
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: rgba(0,0,0,.7);
+  color: var(--white);
+  font-size: var(--fz-sm);
+  font-weight: 700;
+  border-radius: var(--border-radius-pill);
+  z-index: 10;
+  @media (min-width: 768px) {
+    right: var(--spacing-lg);
+  }
+`;
 
 
 
@@ -50,38 +69,32 @@ function App() {
         {!token ? (
        <Login/>
         ) : (
+          <>
+          <StyledLogoutButton onClick={logout} >Log Out</StyledLogoutButton>
+       
           <Router>
             <ScrollToTop/>
           <Switch>
             <Route path="/top-artists">
-              <h1>Top Artists</h1>
+            <TopArtistsPage/>
             </Route>
             <Route path="/top-tracks">
-              <h1>Top Tracks</h1>
+              <TopTracksPage/>
             </Route>
             <Route path="/playlists/:id">
-              <h1>Playlist</h1>
+      <PlaylistInfoPage/>
             </Route>
             <Route path="/playlists">
-              <h1>Playlists</h1>
+              <PlaylistsPage/>
             </Route>
             <Route path="/">
-              <>
-                <button onClick={logout}>Log Out</button>
-
-                {userProfile && (
-                  <div>
-                    <h1>{userProfile.display_name}</h1>
-                    <p>{userProfile.followers.total} Followers</p>
-                    {userProfile.images.length && userProfile.images[0].url && (
-                      <img src={userProfile.images[0].url} alt="Avatar"/>
-                    )}
-                  </div>
-                )}
-              </>
+      
+                <Profile/>
+            
             </Route>
           </Switch>
         </Router>
+        </>
         )}
       </header>
     </div>

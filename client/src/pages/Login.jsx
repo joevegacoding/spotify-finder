@@ -1,7 +1,7 @@
-import styled from 'styled-components/macro';
-import loginImage from '../assets/spotify-login.jpg';
-import appLogo from "../assets/spotify-finder-logo.png"
-import spotifyLogo from '../assets/spotify-logo.png'
+import styled from "styled-components/macro";
+import loginImage from "../assets/spotify-login.jpg";
+import appLogo from "../assets/spotify-finder-logo.png";
+import spotifyLogo from "../assets/spotify-logo.png";
 const StyledLoginContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -12,73 +12,83 @@ const StyledLoginContainer = styled.div`
   }
 `;
 
-
 const StyledLoginImageContainer = styled.div`
-/* width: 50%; */
+  /* width: 50%; */
+  height: 100vh;
 
-img {
-height: 100%;
-width: 100%;
-object-fit: cover;
-}
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+  }
 
-
+  @media (max-width: 768px) {
+    height: 50%;
+  }
 `;
 const StyledLoginTextContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-/* margin: auto; */
-gap: 6rem;
-
-@media (max-width: 768px) {
-
-  gap: 3rem;
-}
-img {
-  width: 80%;
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
 
-`;
+  /* margin: auto; */
+  gap: 6rem;
+  img {
+    width: 400px;
+  }
+  @media (max-width: 768px) {
+    height: 30%;
+    justify-content: flex-end;
+    gap: 3rem;
+    padding-bottom: 3rem;
 
-
-const StyledLoginText = styled.h3`
-  
-
+    img {
+    width: 300px;
+  }
+  }
+ 
 `;
 
 const StyledLoginMessage = styled.div`
+  h1 {
+    font-size: clamp(1.7rem, 4vw, 2.7rem);
+  }
 
-h1 {
+ 
+  h3 {
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    margin-top: clamp(1.2rem, 2vh, 2rem);
+    margin-inline: auto;
+  }
 
-  font-size: clamp(1rem, 4vw, 4rem);
+  @media (max-width: 768px) {
+h1, h3 {
+  text-align: center;
 }
-h3 {
-  font-size: clamp(.8rem, 2vw, 2rem);
-  margin-top: 2rem;
-}
+  }
+
+ 
 `;
 
 const StyledLoginButton = styled.a`
-display: flex;
-justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 
-align-items: center;
+  align-items: center;
   background-color: var(--green);
   color: var(--white);
   border-radius: var(--border-radius-pill);
   font-weight: 700;
-  font-size: var(--fz-xl);
-  padding: clamp(.5rem, 1vw, 1rem) clamp(.6rem, 2vw, 1.5rem);
+  /* font-size: var(--fz-xl); */
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  padding: clamp(0.5rem, 1vw, .5rem) clamp(0.6rem, 2vw, .5rem);
 
-  /* padding-block: clamp(var(--spacing-xs), 1vw, var(--spacing-md)); */
+  img {
+    width: 15%;
 
-img {
-  width:15%;
-  margin-right: 1%;
-}
+  }
   &:hover,
   &:focus {
     text-decoration: none;
@@ -88,20 +98,19 @@ img {
 
 const Login = () => (
   <StyledLoginContainer>
-      <StyledLoginImageContainer>
-          <img src={loginImage} alt="" />
-      </StyledLoginImageContainer>
-      <StyledLoginTextContainer>
+    <StyledLoginImageContainer>
+      <img src={loginImage} alt="" />
+    </StyledLoginImageContainer>
+    <StyledLoginTextContainer>
       <img src={appLogo} alt="app-logo" />
       <StyledLoginMessage>
-      <h1>The world of music</h1>
-      <h3>Discover your profile like never before</h3>
+        <h1>The world of music</h1>
+        <h3>Discover your profile like never before</h3>
       </StyledLoginMessage>
-    <StyledLoginButton href="http://localhost:8888/login">
-   <img src={spotifyLogo} alt="spotify-logo" />
-
-      Log in to Spotify
-    </StyledLoginButton>
+      <StyledLoginButton href="http://localhost:8888/login">
+        <img src={spotifyLogo} alt="spotify-logo" />
+        Sign in with Spotify
+      </StyledLoginButton>
     </StyledLoginTextContainer>
   </StyledLoginContainer>
 );
