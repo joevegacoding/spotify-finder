@@ -18,9 +18,15 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
+
     padding: 0;
     width: 100%;
     max-width: 100%;
+    @media (min-width: 768px) {
+      margin-left: 125px;
+      width: 90%;
+
+    }
     min-height: 100%;
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;

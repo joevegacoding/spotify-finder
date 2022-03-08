@@ -1,6 +1,9 @@
 import { accessToken, logout, getCurrentUserProfile } from "./spotify";
 import { catchErrors } from "./utils";
 import logo from "./logo.svg";
+import {
+  Sidebar
+} from "./components";
 
 import {
   BrowserRouter as Router,
@@ -27,7 +30,7 @@ const StyledLogoutButton = styled.button`
   font-size: var(--fz-sm);
   font-weight: 700;
   border-radius: var(--border-radius-pill);
-  z-index: 10;
+  /* z-index: 10; */
   @media (min-width: 768px) {
     right: var(--spacing-lg);
   }
@@ -64,18 +67,26 @@ function App() {
 
   return (
     <div className="App">
+      
       <GlobalStyle/>
+      
       <header className="App-header">
+      
         {!token ? (
        <Login/>
+
         ) : (
           <>
           <StyledLogoutButton onClick={logout} >Log Out</StyledLogoutButton>
        
           <Router>
+
             <ScrollToTop/>
+            <Sidebar/>
           <Switch>
-            <Route path="/top-artists">
+          
+
+            <Route  path="/top-artists">
             <TopArtistsPage/>
             </Route>
             <Route path="/top-tracks">
@@ -95,7 +106,7 @@ function App() {
           </Switch>
         </Router>
         </>
-        )}
+        )} 
       </header>
     </div>
   );

@@ -4,8 +4,8 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: flex-end;
   position: relative;
-  background: linear-gradient(transparent, rgba(0,0,0,0.5));
-  background-color: var(--grey);
+  /* background:  rgba(0,0,0,); */
+  background-color: var(--near-black);
   height: 30vh;
   max-height: 500px;
   min-height: 250px;
@@ -44,9 +44,10 @@ const StyledHeader = styled.header`
     max-width: 250px;
     min-width: 120px;
     margin-right: var(--spacing-lg);
-    box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+    /* box-shadow: 0 4px 60px rgb(0 0 0 / 50%); */
     background-color: var(--dark-grey);
     border-radius: ${props => props.type === 'user' ? '50%' : '5%'};
+
 
     @media (min-width: 768px) {
       margin-right: var(--spacing-xl);
@@ -61,7 +62,7 @@ const StyledHeader = styled.header`
   }
 
   h1.header__name {
-    font-size: clamp(2.5rem, 10vw, 6rem);
+    font-size: clamp(2rem, 10vw, 4rem);
     font-weight: 900;
     line-height: 1;
     margin: 0 0 var(--spacing-xs) 0;

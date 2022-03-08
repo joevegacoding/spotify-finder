@@ -1,7 +1,18 @@
 import { useState, useEffect } from "react";
 import { catchErrors } from "../utils";
-import { getCurrentUserProfile, getCurrentUserPlaylists, getCurrentUserTopArtists, getCurrentUserTopTracks } from "../spotify";
-import { SectionWrapper, Artists, TracksList, Playlists, Loader } from "../components";
+import {
+  getCurrentUserProfile,
+  getCurrentUserPlaylists,
+  getCurrentUserTopArtists,
+  getCurrentUserTopTracks,
+} from "../spotify";
+import {
+  SectionWrapper,
+  Artists,
+  TracksList,
+  Playlists,
+  Loader,
+} from "../components";
 import { StyledHeader } from "../styles";
 
 const Profile = () => {
@@ -24,7 +35,7 @@ const Profile = () => {
       const topTracks = await getCurrentUserTopTracks();
       setUserTopTracks(topTracks.data);
 
-      console.log(topTracks.data)
+      console.log(topTracks.data);
     };
     catchErrors(fetchData());
   }, []);
@@ -60,29 +71,29 @@ const Profile = () => {
           </div>
         </StyledHeader>
       )}
-      {userPlaylists && userTopTracks && userTopArtists  ? (
-            <main>
-              <SectionWrapper title="Top artists this month" seeAllLink="/top-artists">
-                <Artists topArtists={userTopArtists.items.slice(0, 10)} />
-              </SectionWrapper>
+      {userPlaylists && userTopTracks && userTopArtists ? (
+        <main>
+          <SectionWrapper
+            title="Top artists this month"
+            seeAllLink="/top-artists"
+          >
+            <Artists topArtists={userTopArtists.items.slice(0, 10)} />
+          </SectionWrapper>
 
-              <SectionWrapper title="Top Tracks This Month" seeAllLink="/top-tracks">
-              <TracksList tracks={userTopTracks.items.slice(0, 10)} />
-              </SectionWrapper>
+          <SectionWrapper
+            title="Top Tracks This Month"
+            seeAllLink="/top-tracks"
+          >
+            <TracksList tracks={userTopTracks.items.slice(0, 10)} />
+          </SectionWrapper>
 
-              <SectionWrapper title="My Playlists" seeAllLink="/playlists">
-              <Playlists playlists={userPlaylists.items.slice(0, 10)} />
-              </SectionWrapper>
-            </main>
-          ) : (
-
-          
-          <Loader/>
-          )
-        
-        }
-
-
+          <SectionWrapper title="My Playlists" seeAllLink="/playlists">
+            <Playlists playlists={userPlaylists.items.slice(0, 10)} />
+          </SectionWrapper>
+        </main>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };
