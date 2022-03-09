@@ -7,9 +7,8 @@ import * as IoIcons from "react-icons/io";
 import * as RiIcons from "react-icons/ri";
 import * as GiIcons from "react-icons/go";
 import * as BsIcons from "react-icons/bs";
-import {SidebarData} from './SidebarData'
+import { SidebarData } from "./SidebarData";
 import SubMenu from "./SubMenu";
-
 
 const NavIcon = styled(Link)`
   margin-left: 2rem;
@@ -22,10 +21,9 @@ const NavIcon = styled(Link)`
 `;
 
 const SidebarNav = styled.nav`
-
   background: #15171c;
   /* max-width: 300px; */
-  
+
   width: 150px;
   box-sizing: border-box;
   height: 100vh;
@@ -38,24 +36,20 @@ const SidebarNav = styled.nav`
   transition: 0.3s ease-in-out;
   z-index: 10;
 
-
   @media (max-width: 768px) {
     bottom: 0;
     top: 92vh;
     width: 100%;
-    height: 8vh;
-    
-
+    height: 9vh;
   }
 `;
 
 const SidebarWrap = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
   color: white;
   width: 100%;
   margin-top: 4rem;
-
 
   justify-content: flex-start;
   align-items: center;
@@ -65,9 +59,8 @@ flex-direction: column;
     margin-top: 0;
     flex-direction: row;
     justify-content: center;
-  align-items: center;
-  margin-inline: auto;
-
+    align-items: center;
+    margin-inline: auto;
   }
 `;
 
@@ -80,11 +73,10 @@ const Sidebar = () => {
   };
   return (
     <>
-   
-      <SidebarNav >
-        <SidebarWrap >
+      <SidebarNav>
+        <SidebarWrap>
           {SidebarData.map((icon, index) => {
-          return <SubMenu icon={icon} key={index}/>
+            return <SubMenu icon={icon} key={index} />;
           })}
         </SidebarWrap>
       </SidebarNav>
