@@ -96,6 +96,11 @@ const StyledLoginButton = styled.a`
   }
 `;
 
+const LOGIN_URI =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://localhost:8888/login'
+    : ' https://spotify-finer-app.herokuapp.com/login';
+
 const Login = () => (
   <StyledLoginContainer>
     <StyledLoginImageContainer>
@@ -107,7 +112,7 @@ const Login = () => (
         <h1>The world of music</h1>
         <h3>Discover your profile like never before</h3>
       </StyledLoginMessage>
-      <StyledLoginButton href="http://localhost:8888/login">
+      <StyledLoginButton href={LOGIN_URI}>
         <img src={spotifyLogo} alt="spotify-logo" />
         Sign in with Spotify
       </StyledLoginButton>
