@@ -2,10 +2,19 @@ import styled from "styled-components/macro";
 import loginImage from "../assets/spotify-login.jpg";
 import appLogo from "../assets/spotify-finder-logo.png";
 import spotifyLogo from "../assets/spotify-logo.png";
+
 const StyledLoginContainer = styled.div`
   display: grid;
+
+  @media (min-width: 350px) {
+    overflow: hidden;
+  }
   grid-template-columns: 1fr 1fr;
-  height: 100vh;
+  max-height: 100vh;
+  background-color: #000;
+  a {
+    text-decoration: none;
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -14,16 +23,23 @@ const StyledLoginContainer = styled.div`
 
 const StyledLoginImageContainer = styled.div`
   /* width: 50%; */
-  height: 100vh;
 
+height: 100vh;
   img {
-    max-height: 100%;
-    max-width: 100%;
+    height: 100%;
+
+    width: 100%;
     object-fit: cover;
   }
 
   @media (max-width: 768px) {
     height: 50%;
+
+    img {
+    height: 50vh;
+    width: 100%;
+    object-fit: cover;
+  }
   }
 `;
 const StyledLoginTextContainer = styled.div`
@@ -31,24 +47,35 @@ const StyledLoginTextContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-
+  background-color: #000;
+  color: white;
+  height: 100%;
   /* margin: auto; */
   gap: 6rem;
   img {
     width: 400px;
+    
   }
   @media (max-width: 768px) {
-    height: 30%;
-    justify-content: flex-end;
-    gap: 3rem;
-    padding-bottom: 3rem;
+    height: 40vh;
+    margin-block: 15%;
+    justify-content: center;  
+      gap: 3rem;
+    /* padding-bottom: 3rem; */
 
     img {
-    width: 300px;
+      width: 300px;
+    }
   }
+
+  @media (max-width: 400px) {
+    justify-content: flex-start;
+height: 100vh;
+margin-block: 15%;
+    img {
+      width: 250px;
+    }
   }
- 
 `;
 
 const StyledLoginMessage = styled.div`
@@ -56,7 +83,6 @@ const StyledLoginMessage = styled.div`
     font-size: clamp(1.7rem, 4vw, 2.7rem);
   }
 
- 
   h3 {
     font-size: clamp(1.2rem, 2vw, 1.8rem);
     margin-top: clamp(1.2rem, 2vh, 2rem);
@@ -64,12 +90,23 @@ const StyledLoginMessage = styled.div`
   }
 
   @media (max-width: 768px) {
-h1, h3 {
-  text-align: center;
-}
+    h1,
+    h3 {
+      text-align: center;
+    }
   }
 
- 
+  @media (max-width: 400px) {
+    h1 {
+    font-size: 1rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-inline: auto;
+  }
+  }
 `;
 
 const StyledLoginButton = styled.a`
@@ -77,17 +114,23 @@ const StyledLoginButton = styled.a`
   justify-content: space-around;
 
   align-items: center;
-  background-color: var(--green);
+  background-color: #1DB954;
   color: var(--white);
-  border-radius: var(--border-radius-pill);
+  border-radius: 30px;
   font-weight: 700;
-  /* font-size: var(--fz-xl); */
   font-size: clamp(1rem, 2vw, 1.2rem);
-  padding: clamp(0.5rem, 1vw, .5rem) clamp(0.6rem, 2vw, .5rem);
+  padding: clamp(0.5rem, 1vw, 0.5rem) clamp(0.6rem, 2vw, 0.5rem);
+
+  
+
+  @media (max-width: 400px) {
+    padding: 0;
+    margin-bottom: 1rem;
+
+  }
 
   img {
     width: 15%;
-
   }
   &:hover,
   &:focus {
@@ -97,9 +140,9 @@ const StyledLoginButton = styled.a`
 `;
 
 const LOGIN_URI =
-  process.env.NODE_ENV !== 'production'
-    ? 'http://localhost:8888/login'
-    : ' https://spotify-finer-app.herokuapp.com/login';
+  process.env.NODE_ENV !== "production"
+    ? "http://localhost:8888/login"
+    : " https://spotify-finer-app.herokuapp.com/login";
 
 const Login = () => (
   <StyledLoginContainer>

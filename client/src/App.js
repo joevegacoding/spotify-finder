@@ -73,14 +73,15 @@ function App() {
 
   return (
     <div className="App">
-      <GlobalStyle />
+      
 
       <header className="App-header">
         {!token ? (
           <Login />
         ) : (
           <>
-            <StyledLogoutButton onClick={logout}>Log Out</StyledLogoutButton>
+          <GlobalStyle />
+            <StyledLogoutButton style={{zIndex: 100}} onClick={logout}>Log Out</StyledLogoutButton>
 
             <Router>
               <ScrollToTop />
