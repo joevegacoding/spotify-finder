@@ -2,13 +2,15 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const StyledContainer = styled.div``;
+const StyledContainer = styled.div`
+  padding-block: 1rem;
+`;
 
 const SidebarLink = styled(NavLink)`
   display: flex;
   min-width: 150px;
   width: 100%;
-  
+
   color: white;
   justify-content: space-between;
   align-items: center;
@@ -30,33 +32,14 @@ const SidebarLink = styled(NavLink)`
     border-left: 4px solid green;
   }
 
-  @media (max-width: 768px) {
-    height: 100%;
-    /* width: 20%; */
-    margin-inline: auto;
-    min-width: 100px;
-    font-size: .8rem;
-    &.is-active {
-   
-   
-    border-left: none;
-    border-top: 4px solid green;
-  }
-  }
 
   .icon-container {
     display: flex;
     width: 100%;
-height: 8vh;
+    height: 8vh;
     justify-content: center;
     align-items: center;
-    /* margin-left: .7rem; */
     gap: 0.5rem;
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-
-    }
   }
 `;
 

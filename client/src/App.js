@@ -1,31 +1,38 @@
 import { accessToken, logout, getCurrentUserProfile } from "./spotify";
 import { catchErrors } from "./utils";
 import logo from "./logo.svg";
-import {
-  Sidebar
-} from "./components";
+import { Sidebar, MobileNavigation } from "./components";
+
+
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useLocation
-} from 'react-router-dom';
-import { useEffect, useState } from "react";
-import styled from 'styled-components/macro';
-import {GlobalStyle} from './styles'
+  useLocation,
+} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components/macro";
+import { GlobalStyle } from "./styles";
 // import Login from "./pages/Login";
-import {Login, Profile, TopArtistsPage, TopTracksPage, PlaylistsPage, PlaylistInfoPage} from './pages'
+import {
+  Login,
+  Profile,
+  TopArtistsPage,
+  TopTracksPage,
+  PlaylistsPage,
+  PlaylistInfoPage,
 
-
-
+} from "./pages";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 const StyledLogoutButton = styled.button`
   position: absolute;
   top: var(--spacing-sm);
   right: var(--spacing-md);
   padding: var(--spacing-xs) var(--spacing-sm);
-  background-color: rgba(0,0,0,.7);
+  background-color: rgba(0, 0, 0, 0.7);
   color: var(--white);
   font-size: var(--fz-sm);
   font-weight: 700;
@@ -35,9 +42,6 @@ const StyledLogoutButton = styled.button`
     right: var(--spacing-lg);
   }
 `;
-
-
-
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -49,64 +53,59 @@ function ScrollToTop() {
   return null;
 }
 
-
 function App() {
   const [token, setToken] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
 
+  const [value, setValue] = useState("recents");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   useEffect(() => {
     setToken(accessToken);
     const fetchData = async () => {
-     
-        const { data } = await getCurrentUserProfile();
-        setUserProfile(data);
-     
+      const { data } = await getCurrentUserProfile();
+      setUserProfile(data);
     };
     catchErrors(fetchData());
   }, []);
 
   return (
     <div className="App">
-      
-      <GlobalStyle/>
-      
-      <header className="App-header">
-      
-        {!token ? (
-       <Login/>
+      <GlobalStyle />
 
+      <header className="App-header">
+        {!token ? (
+          <Login />
         ) : (
           <>
-          <StyledLogoutButton onClick={logout} >Log Out</StyledLogoutButton>
-       
-          <Router>
+            <StyledLogoutButton onClick={logout}>Log Out</StyledLogoutButton>
 
-            <ScrollToTop/>
-            <Sidebar/>
-          <Switch>
-          
-
-            <Route  path="/top-artists">
-            <TopArtistsPage/>
-            </Route>
-            <Route path="/top-tracks">
-              <TopTracksPage/>
-            </Route>
-            <Route path="/playlists/:id">
-      <PlaylistInfoPage/>
-            </Route>
-            <Route path="/playlists">
-              <PlaylistsPage/>
-            </Route>
-            <Route path="/">
-      
-                <Profile/>
-            
-            </Route>
-          </Switch>
-        </Router>
-        </>
-        )} 
+            <Router>
+              <ScrollToTop />
+              <Sidebar />
+              <Switch>
+                <Route path="/top-artists">
+                  <TopArtistsPage />
+                </Route>
+                <Route path="/top-tracks">
+                  <TopTracksPage />
+                </Route>
+                <Route path="/playlists/:id">
+                  <PlaylistInfoPage />
+                </Route>
+                <Route path="/playlists">
+                  <PlaylistsPage />
+                </Route>
+                <Route path="/">
+                  <Profile />
+                </Route>
+              </Switch>
+            <MobileNavigation/>
+            </Router>
+          </>
+        )}
       </header>
     </div>
   );
